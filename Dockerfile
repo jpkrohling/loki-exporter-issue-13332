@@ -1,3 +1,12 @@
-FROM ghcr.io/open-telemetry/opentelemetry-collector-releases/opentelemetry-collector-contrib:0.58.0
+FROM golang:1.18-alpine 
+RUN apk --update add ca-certificates
+WORKDIR /usr/src/app
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
+COPY gen .
+RUN go build -v -o /otelcol-contrib ./...
 
-COPY /generated/otelcol-lokiexp-debug /otelcol-contrib
+COPY otelcol.yaml /etc/otelcol-contrib/config.yaml
+ENTRYPOINT ["/otelcol-contrib"]
+CMD ["--config", "/etc/otelcol-contrib/config.yaml"]
+EXPOSE 4317

@@ -7,5 +7,5 @@ Running
 ---
 
 ```console
-./generated/otelcol-lokiexp-debug --config otelcol.yaml
+./gen/otelcol-lokiexp-debug --config otelcol.yaml
 ```

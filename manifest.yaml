@@ -4,7 +4,7 @@ dist:
     description: "OpenTelemetry Collector debug binary for the contrib issue #13332"
     otelcol_version: "0.58.0"
     version: "0.58.1-devel"
-    output_path: ./generated
+    output_path: ./gen
 
 exporters:
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v0.0.0
